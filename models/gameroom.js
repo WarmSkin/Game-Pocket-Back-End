@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-constrecordSchema = new Schema({
+const gameroomSchema = new Schema({
   name: String,
   type: String,
   host: { type: Schema.Types.ObjectId, ref: 'Profile' },
@@ -13,6 +13,6 @@ constrecordSchema = new Schema({
   timestamps: true,
 })
 
-const Record = mongoose.model('Record',recordSchema)
+const Gameroom = mongoose.model('Gameroom',gameroomSchema)
 
-export { Record }
+export { Gameroom }
