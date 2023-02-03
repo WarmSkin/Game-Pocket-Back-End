@@ -71,10 +71,20 @@ function changePassword(req, res) {
 function showLeaderboard(req, res) {
   Record.find({})
   .then(records => {
-    res.json({ records })
+    res.status(200).json({ records })
   })
   .catch(err => {
     res.status(500).json(err)
+  })
+}
+
+function index(req, res) {
+  User.find({})
+  .then(users => {
+    res.status(200).json({ users})
+  })
+  .catch(err => {
+    res.status(500).jason(err)
   })
 }
 
@@ -89,5 +99,6 @@ export {
   signup, 
   login, 
   changePassword,
-  showLeaderboard
+  showLeaderboard,
+  index,
 }
