@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-constrecordSchema = new Schema({
+const recordSchema = new Schema({
   owner: String,
   game: String,
   win: Number,
