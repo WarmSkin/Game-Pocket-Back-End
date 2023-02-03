@@ -1,6 +1,5 @@
 import { User } from '../models/user.js'
 import { Profile } from '../models/profile.js'
-import { Record } from '../models/record.js'
 import jwt from 'jsonwebtoken'
 
 function signup(req, res) {
@@ -68,37 +67,14 @@ function changePassword(req, res) {
   })
 }
 
-function showLeaderboard(req, res) {
-  Record.find({})
-  .then(records => {
-    res.status(200).json({ records })
-  })
-  .catch(err => {
-    res.status(500).json(err)
-  })
-}
-
-function index(req, res) {
-  User.find({})
-  .then(users => {
-    res.status(200).json({ users})
-  })
-  .catch(err => {
-    res.status(500).jason(err)
-  })
-}
-
 /* --== Helper Functions ==-- */
 
 function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: '24h' })
 }
 
-
 export { 
   signup, 
   login, 
-  changePassword,
-  showLeaderboard,
-  index,
+  changePassword, 
 }
