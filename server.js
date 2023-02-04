@@ -13,6 +13,7 @@ import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as lobbyRouter } from './routes/lobby.js'
 import { router as chatroomRouter } from './routes/chatroom.js'
+import { router as messageRouter } from './routes/message.js'
 
 // create the express app
 const app = express()
@@ -28,6 +29,7 @@ app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/lobby', lobbyRouter)
 app.use('/api/chatroom', chatroomRouter)
+app.use('/api/message', messageRouter)
 
 // handle 404 errors
 app.use(function (req, res, next) {
