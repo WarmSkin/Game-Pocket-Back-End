@@ -29,4 +29,18 @@ function addPhoto(req, res) {
   })
 }
 
-export { index, addPhoto }
+function update(req, res) {
+  Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(profile => {
+    res.status(200).json(profile)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
+}
+
+export { 
+  index,
+  addPhoto,
+  update,
+ }
