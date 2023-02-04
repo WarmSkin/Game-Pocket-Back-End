@@ -1,4 +1,3 @@
-import { Message } from "../models/message.js"
 import { Chatroom } from "../models/chatroom.js"
 
 function create(req, res) {

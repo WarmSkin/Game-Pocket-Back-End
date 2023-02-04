@@ -15,6 +15,7 @@ import { router as lobbyRouter } from './routes/lobby.js'
 import { router as chatroomRouter } from './routes/chatroom.js'
 import { router as messageRouter } from './routes/message.js'
 import { router as recordRouter } from './routes/record.js'
+import { router as gameroomRouter } from './routes/gameroom.js'
 
 // create the express app
 const app = express()
@@ -32,6 +33,7 @@ app.use('/api/lobbies', lobbyRouter)
 app.use('/api/chatrooms', chatroomRouter)
 app.use('/api/messages', messageRouter)
 app.use('/api/records', recordRouter)
+app.use('/api/gamerooms', gameroomRouter)
 
 // handle 404 errors
 app.use(function (req, res, next) {
