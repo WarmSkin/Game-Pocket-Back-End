@@ -1,52 +1,67 @@
 import { User } from '../models/user.js'
 import { Profile } from '../models/profile.js'
 import { Record } from '../models/record.js'
-import { Chatroom } from '../models/chatroom.js'
+import { Lobby } from '../models/lobby.js'
 import { Gameroom } from '../models/gameroom.js'
 import { Message } from '../models/message.js'
-import { Lobby } from '../models/lobby.js'
 
-function showRecords(req, res) {
-  Record.find({})
-  .then(records => {
-    res.status(200).json({ records })
+function create(req, res) {
+  Lobby.create(req.body)
+  .then(lobby => {
+    res.status(201).json(lobby)
   })
-  .catch(err => {
-    res.status(500).json(err)
-  })
-}
-
-function showUsers(req, res) {
-  User.find({})
-  .then(users => {
-    res.status(200).json({ users})
-  })
-  .catch(err => {
-    res.status(500).json(err)
+  .catch (error => {
+    res.status(500).json(error)
   })
 }
 
 function index(req, res) {
-  res.status(200).json({text:"Hi I am lobby"})
-  // Lobby.find({})
-  // .populate('chatroom')
-  // .populate('gameroom')
-  // .populate('member')
-  // .then(lobby => {
-  //   res.status(200).json({lobby})
-  // })
-  // .catch(err => {
-  //   res.status(500).json(err)
-  // })
+Lobby.find({})
+.then(lobbys => {
+  res.status(200).json(lobbys)
+})
+.catch (error => {
+  res.status(500).json(error)
+})
 }
 
-function showChatroom(req, res) {
-  res.status(200).json({text:"Hi I am chatroom"})
+function show(req, res) {
+Lobby.findById(req.params.id)
+.populate('chatroom')
+.populate('gamerooms')
+.populate('members')
+.then(lobby => {
+  res.status(200).json(lobby)
+})
+.catch (error => {
+  res.status(500).json(error)
+})
 }
 
-export { 
-  showUsers,
-  showRecords,
-  showChatroom,
-  index,
+function update(req, res) {
+Lobby.findByIdAndUpdate(req.params.id, req.body, {new: true})
+.then(lobby => {
+  res.status(200).json(lobby)
+})
+.catch (error => {
+  res.status(500).json(error)
+})
+}
+
+function deleteLobby(req, res) {
+Lobby.findByIdAndDelete(req.params.id)
+.then(lobby => {
+  res.status(200).json(lobby)
+})
+.catch (error => {
+  res.status(500).json(error)
+})
+}
+
+export {
+create,
+index,
+show,
+update,
+deleteLobby as delete,
 }

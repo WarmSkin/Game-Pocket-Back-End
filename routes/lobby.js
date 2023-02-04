@@ -5,10 +5,13 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 const router = Router()
 
 // ========== Public Routes ===========
-router.get('/', lobbyCtrl.index)
-router.get('/chatroom', lobbyCtrl.showChatroom)
-router.get('/users', lobbyCtrl.showUsers)
-router.get('/records', lobbyCtrl.showRecords)
+
 // ========= Protected Routes ========= 
+router.use(decodeUserFromToken)
+router.post('/', checkAuth, lobbyCtrl.create)
+router.get('/', checkAuth, lobbyCtrl.index)
+router.get('/:id', checkAuth, lobbyCtrl.show)
+router.put('/:id/', checkAuth, lobbyCtrl.update)
+router.delete('/:id', checkAuth, lobbyCtrl.delete)
 
 export { router }

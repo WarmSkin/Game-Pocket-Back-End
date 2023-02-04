@@ -36,8 +36,8 @@ function show(req, res) {
   })
 }
 
-const update = async (req, res) => {
-  Chatroom.findByIdAndUpdate(req.params.id, req.body)
+function update(req, res) {
+  Chatroom.findByIdAndUpdate(req.params.id, req.body, {new: true})
   .then(chatroom => {
     res.status(200).json(chatroom)
   })
@@ -46,7 +46,7 @@ const update = async (req, res) => {
   })
 }
 
-const deleteChatroom = async (req, res) => {
+function deleteChatroom(req, res) {
   Chatroom.findByIdAndDelete(req.params.id)
   .then(chatroom => {
     res.status(200).json(chatroom)
