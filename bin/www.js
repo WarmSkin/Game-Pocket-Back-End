@@ -1,6 +1,10 @@
 // Module dependencies
 import { app } from '../server.js'
 import http from 'http'
+import debug from 'debug'
+import { Server } from 'socket.io'
+import axios from 'axios'
+import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 // Get port from environment and store in Express
 const port = normalizePort(process.env.PORT || '3001')
@@ -8,6 +12,23 @@ app.set('port', port)
 
 // Create HTTP server
 const server = http.createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: '*'
+  }
+})
+
+io.on('connection', socket => {
+  let num = 1;
+  socket.on('lobbies-index', () => {
+    axios.get(`http://localhost:${port}/api/lobbies`)
+    .then(response => {
+      console.log(num ++)
+      socket.broadcast.emit('lobbies-index', response.data)
+    })
+  })
+
+})
 
 // Listen on provided port, on all network interfaces
 server.listen(port)
