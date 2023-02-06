@@ -49,9 +49,23 @@ function show(req, res) {
   })
 }
 
+function myPage(req, res) {
+  Profile.findById(req.user.profile)
+  .populate('friendRequests')
+  .populate('friends')
+  .populate('records')
+  .then(profile => {
+    res.status(200).json(profile)
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
+}
+
 export { 
   index,
   addPhoto,
   update,
   show,
+  myPage,
  }

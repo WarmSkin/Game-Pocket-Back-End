@@ -9,7 +9,7 @@ const profileSchema = new Schema({
   about: String,
   friendRequests: [{ type: Schema.Types.ObjectId, ref: 'Profile' }],
   friends: [{ type: Schema.Types.ObjectId, ref: 'Profile' }],
-  record: [{ type: Schema.Types.ObjectId, ref: 'Record' }]
+  records: [{ type: Schema.Types.ObjectId, ref: 'Record' }]
 },{
   timestamps: true,
 })
