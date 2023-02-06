@@ -34,7 +34,17 @@ function update(req, res) {
   .then(profile => {
     res.status(200).json(profile)
   })
-  .catch (error => {
+  .catch(error => {
+    res.status(500).json(error)
+  })
+}
+
+function show(req, res) {
+  Profile.findById(req.params.id)
+  .then(profile => {
+    res.status(200).json(profile)
+  })
+  .catch(error => {
     res.status(500).json(error)
   })
 }
@@ -43,4 +53,5 @@ export {
   index,
   addPhoto,
   update,
+  show,
  }
