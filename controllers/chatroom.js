@@ -55,10 +55,25 @@ function deleteChatroom(req, res) {
   })
 }
 
+function addMessage(req, res) {
+  Chatroom.findByIdAndUpdate(
+    {_id: req.params.cid},
+    {$push: {messages: req.params.mid}},
+    {new: true}
+  )
+  .then(chatroom => {
+    res.status(200).json(chatroom)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
+}
+
 export {
   create,
   index,
   show,
   update,
   deleteChatroom as delete,
+  addMessage,
 }
