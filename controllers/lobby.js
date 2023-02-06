@@ -27,7 +27,7 @@ Lobby.find({})
 
 function show(req, res) {
 Lobby.findById(req.params.id)
-.populate('chatroom')
+.populate('mainroom')
 .populate('gamerooms')
 .populate('members')
 .then(lobby => {
