@@ -28,6 +28,7 @@ Lobby.find({})
 function show(req, res) {
 Lobby.findById(req.params.id)
 .populate('mainroom')
+.populate({path:"mainroom", populate: "messages"})
 .populate('gamerooms')
 .populate('members')
 .then(lobby => {
