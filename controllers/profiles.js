@@ -110,6 +110,9 @@ function denyFriendRequest(req, res) {
     },
     {new: true}
   )
+  .populate('friendRequests')
+    .populate('friends')
+    .populate('records')
   .then(profile => {
     res.status(200).json(profile)
   })
@@ -134,6 +137,9 @@ function breakupFriendship(req, res) {
       },
       {new: true}
     )
+    .populate('friendRequests')
+    .populate('friends')
+    .populate('records')
     .then(newProfile => {
       res.status(200).json(newProfile)
     })
