@@ -87,6 +87,9 @@ function acceptFriendRequest(req, res) {
       },
       {new: true}
     )
+    .populate('friendRequests')
+    .populate('friends')
+    .populate('records')
     .then(newProfile => {
       res.status(200).json(newProfile)
     })
