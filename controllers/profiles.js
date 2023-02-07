@@ -74,6 +74,31 @@ function sendFriendRequest(req, res) {
   })
 }
 
+function acceptFriendRequest(req, res) {
+  Profile.findById(req.params.id)
+  .then(profile => {
+    profile.friends.push(req.user.profile)
+    profile.save()
+    Profile.findOneAndUpdate(
+      req.user.profile,
+      {
+        $pull: {friendRequests: profile._id},
+        $push: {friends: profile._id}
+      },
+      {new: true}
+    )
+    .then(newProfile => {
+      res.status(200).json(newProfile)
+    })
+    .catch(error => {
+      res.status(500).json(error)
+    })
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
+}
+
 export { 
   index,
   addPhoto,
@@ -81,4 +106,5 @@ export {
   show,
   myPage,
   sendFriendRequest,
+  acceptFriendRequest,
  }
