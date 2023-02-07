@@ -80,7 +80,7 @@ function acceptFriendRequest(req, res) {
     profile.friends.push(req.user.profile)
     profile.save()
     Profile.findOneAndUpdate(
-      req.user.profile,
+      {_id: req.user.profile},
       {
         $pull: {friendRequests: profile._id},
         $push: {friends: profile._id}
@@ -101,7 +101,7 @@ function acceptFriendRequest(req, res) {
 
 function denyFriendRequest(req, res) {
   Profile.findOneAndUpdate(
-    req.user.profile,
+    {_id: req.user.profile},
     {
       $pull: {friendRequests: req.params.id},
     },
@@ -117,7 +117,7 @@ function denyFriendRequest(req, res) {
 
 function breakupFriendship(req, res) {
   Profile.findOneAndUpdate(
-    req.params.id,
+    {_id: req.params.id},
     {
       $pull: {friends: req.user.profile},
     },
@@ -125,7 +125,7 @@ function breakupFriendship(req, res) {
   )
   .then(profile => {
     Profile.findOneAndUpdate(
-      req.user.profile,
+      {_id: req.user.profile},
       {
         $pull: {friends: profile._id},
       },
