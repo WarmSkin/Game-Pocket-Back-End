@@ -99,6 +99,22 @@ function acceptFriendRequest(req, res) {
   })
 }
 
+function denyFriendRequest(req, res) {
+  Profile.findOneAndUpdate(
+    req.user.profile,
+    {
+      $pull: {friendRequests: req.params.id},
+    },
+    {new: true}
+  )
+  .then(profile => {
+    res.status(200).json(profile)
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
+}
+
 export { 
   index,
   addPhoto,
@@ -107,4 +123,5 @@ export {
   myPage,
   sendFriendRequest,
   acceptFriendRequest,
+  denyFriendRequest,
  }
