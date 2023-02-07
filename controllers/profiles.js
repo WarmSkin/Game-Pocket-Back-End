@@ -115,6 +115,34 @@ function denyFriendRequest(req, res) {
   })
 }
 
+function breakupFriendship(req, res) {
+  Profile.findOneAndUpdate(
+    req.params.id,
+    {
+      $pull: {friends: req.user.profile},
+    },
+    {new: true}
+  )
+  .then(profile => {
+    Profile.findOneAndUpdate(
+      req.user.profile,
+      {
+        $pull: {friends: profile._id},
+      },
+      {new: true}
+    )
+    .then(newProfile => {
+      res.status(200).json(newProfile)
+    })
+    .catch(error => {
+      res.status(500).json(error)
+    })
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
+}
+
 export { 
   index,
   addPhoto,
@@ -124,4 +152,5 @@ export {
   sendFriendRequest,
   acceptFriendRequest,
   denyFriendRequest,
+  breakupFriendship,
  }

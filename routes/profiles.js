@@ -17,5 +17,6 @@ router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
 router.put('/:id/send-friend-request', checkAuth, profilesCtrl.sendFriendRequest)
 router.put('/:id/accept-friend-request', checkAuth, profilesCtrl.acceptFriendRequest)
 router.put('/:id/deny-friend-request', checkAuth, profilesCtrl.denyFriendRequest)
+router.put('/:id/breakup-friendship', checkAuth, profilesCtrl.breakupFriendship)
 
 export { router }
