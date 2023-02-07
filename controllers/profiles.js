@@ -62,10 +62,23 @@ function myPage(req, res) {
   })
 }
 
+function sendFriendRequest(req, res) {
+  Profile.findById(req.params.id)
+  .then(profile => {
+    profile.friendRequests.push(req.user.profile)
+    profile.save()
+    res.status(200).json(profile)
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
+}
+
 export { 
   index,
   addPhoto,
   update,
   show,
   myPage,
+  sendFriendRequest,
  }

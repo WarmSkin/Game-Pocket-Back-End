@@ -12,7 +12,8 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.get('/mypage', checkAuth, profilesCtrl.myPage)
 router.get('/:id', checkAuth, profilesCtrl.show)
-router.put('/:id/', checkAuth, profilesCtrl.update)
+router.put('/:id', checkAuth, profilesCtrl.update)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
+router.put('/:id/send-friend-request', checkAuth, profilesCtrl.sendFriendRequest)
 
 export { router }
