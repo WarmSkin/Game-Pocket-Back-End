@@ -31,6 +31,7 @@ Lobby.findById(req.params.id)
 .populate({path:"mainroom", populate: "messages"})
 .populate('gamerooms')
 .populate('members')
+.populate('chatrooms')
 .then(lobby => {
   res.status(200).json(lobby)
 })
