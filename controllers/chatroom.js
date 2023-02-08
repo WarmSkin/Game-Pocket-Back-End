@@ -4,8 +4,8 @@ function create(req, res) {
     req.body.owner = req.user.profile
     req.body.members = [req.user.profile]
     Chatroom.create(req.body)
-    .populate('members')
     .then(chatroom => {
+      chatroom.populate('members')
       res.status(201).json(chatroom)
     })
     .catch (error => {
