@@ -11,7 +11,8 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, lobbyCtrl.create)
 router.get('/', checkAuth, lobbyCtrl.index)
 router.get('/:id', checkAuth, lobbyCtrl.show)
-router.put('/:id/', checkAuth, lobbyCtrl.update)
+router.put('/:id', checkAuth, lobbyCtrl.update)
+router.put('/:lid/:cid/add-chatroom', lobbyCtrl.addChatroom)
 router.delete('/:id', checkAuth, lobbyCtrl.delete)
 
 export { router }

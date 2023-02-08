@@ -59,10 +59,25 @@ Lobby.findByIdAndDelete(req.params.id)
 })
 }
 
+function addChatroom(req, res) {
+  Lobby.findByIdAndUpdate(
+    {_id: req.params.lid},
+    {$push: {chatrooms: req.params.cid}},
+    {new: true}
+  )
+  .then(lobby => {
+    res.status(200).json(lobby)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
+}
+
 export {
 create,
 index,
 show,
 update,
 deleteLobby as delete,
+addChatroom,
 }
