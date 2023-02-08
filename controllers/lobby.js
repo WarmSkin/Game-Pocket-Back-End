@@ -65,6 +65,8 @@ function addChatroom(req, res) {
     {$push: {chatrooms: req.params.cid}},
     {new: true}
   )
+  .populate('chatrooms')
+  .populate('members')
   .then(lobby => {
     res.status(200).json(lobby)
   })
