@@ -18,35 +18,28 @@ const io = new Server(server, {
 
 io.on('connection', socket => {
   console.log("Server is up")
-  
-  socket.on('lobbies-index', () => {
-    io.on('connection', socket => {
-      console.log("Server is up")
-    
-      socket.on('refresh', () => {
-          socket.broadcast.emit('refresh')
-      })
-    
-      socket.on('refreshLobby', () => {
-        setTimeout(() => {
-          socket.broadcast.emit('refreshLobby')
-        },500)
-      })
-    
-      socket.on('friendRequest', () => {
-        setTimeout(() => {
-        socket.broadcast.emit('friendRequest')
-      },500)
-      })
-    
-      socket.on('refreshMessage', () => {
-        setTimeout(() => {
-        socket.broadcast.emit('refreshMessage')
-      },500)
-      })
-    })
+
+  socket.on('refresh', () => {
+      socket.broadcast.emit('refresh')
   })
 
+  socket.on('refreshLobby', () => {
+    setTimeout(() => {
+      socket.broadcast.emit('refreshLobby')
+    },500)
+  })
+
+  socket.on('friendRequest', () => {
+    setTimeout(() => {
+    socket.broadcast.emit('friendRequest')
+  },500)
+  })
+
+  socket.on('refreshMessage', () => {
+    setTimeout(() => {
+    socket.broadcast.emit('refreshMessage')
+  },500)
+  })
 })
 
 // Listen on provided port, on all network interfaces
