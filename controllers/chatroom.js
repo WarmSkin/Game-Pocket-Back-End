@@ -4,6 +4,7 @@ function create(req, res) {
     req.body.owner = req.user.profile
     req.body.members = [req.user.profile]
     Chatroom.create(req.body)
+    .populate('members')
     .then(chatroom => {
       res.status(201).json(chatroom)
     })
