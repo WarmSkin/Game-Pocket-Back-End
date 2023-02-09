@@ -30,7 +30,7 @@ function addPhoto(req, res) {
 }
 
 function update(req, res) {
-  Profile.findByIdAndUpdate(req.user.profile, req.body, {new: true})
+  Profile.findOneAndUpdate({_id: req.user.profile}, req.body, {new: true})
   .then(profile => {
     res.status(200).json(profile)
   })
