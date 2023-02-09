@@ -112,4 +112,5 @@ update,
 deleteLobby as delete,
 addChatroom,
 joinLobby,
+leaveLobby,
 }
