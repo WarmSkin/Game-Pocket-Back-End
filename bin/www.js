@@ -21,8 +21,10 @@ io.on('connection', socket => {
   console.log("Server is up")
 
   socket.on('changeName', async () => { 
+    setTimeout(() => {
       const user = socket
       user.emit('changeName')
+    },500)
   })
 
   socket.on('refreshLobby', () => {
