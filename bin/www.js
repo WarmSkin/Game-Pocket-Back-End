@@ -19,8 +19,11 @@ const io = new Server(server, {
 io.on('connection', socket => {
   console.log("Server is up")
 
-  socket.on('refresh', () => {
-      socket.broadcast.emit('refresh')
+  socket.on('changeName', async () => {
+    setTimeout(() => {
+      console.log("changeName!!!!")
+      socket.to(socket.id).emit('changeName')
+    },500)
   })
 
   socket.on('refreshLobby', () => {
