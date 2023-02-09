@@ -3,9 +3,10 @@ import { app } from '../server.js'
 import http from 'http'
 import debug from 'debug'
 import { Server } from 'socket.io'
+import { userInfo } from 'os'
 
 // Get port from environment and store in Express
-const port = normalizePort(process.env.PORT || '8080')
+const port = normalizePort(process.env.PORT || '3001')
 app.set('port', port)
 
 // Create HTTP server
@@ -19,11 +20,9 @@ const io = new Server(server, {
 io.on('connection', socket => {
   console.log("Server is up")
 
-  socket.on('changeName', async () => {
-    setTimeout(() => {
-      console.log("changeName!!!!")
-      socket.to(socket.id).emit('changeName')
-    },500)
+  socket.on('changeName', async () => { 
+      const user = socket
+      user.emit('changeName')
   })
 
   socket.on('refreshLobby', () => {
