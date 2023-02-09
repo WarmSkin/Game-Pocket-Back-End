@@ -13,6 +13,7 @@ router.get('/', checkAuth, chatroomCtrl.index)
 router.get('/:id', checkAuth, chatroomCtrl.show)
 router.put('/:id/', checkAuth, chatroomCtrl.update)
 router.put('/:id/join-chatroom', checkAuth, chatroomCtrl.joinChatroom)
+router.put('/:id/leave-chatroom', checkAuth, chatroomCtrl.leaveChatroom)
 router.put('/addmessage/:cid/:mid', checkAuth, chatroomCtrl.addMessage)
 router.delete('/:id', checkAuth, chatroomCtrl.delete)
 

@@ -84,6 +84,20 @@ function joinChatroom(req, res) {
   })
 }
 
+function leaveChatroom(req, res) {
+  Chatroom.findByIdAndUpdate(
+    {_id: req.params.id},
+    {$pull: {members: req.user.profile}},
+    {new: true}
+  )
+  .then(chatroom => {
+    res.status(200).json(chatroom)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
+}
+
 export {
   create,
   index,
@@ -92,4 +106,5 @@ export {
   deleteChatroom as delete,
   addMessage,
   joinChatroom,
+  leaveChatroom,
 }
