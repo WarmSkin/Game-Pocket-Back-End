@@ -21,51 +21,51 @@ function create(req, res) {
 }
 
 function index(req, res) {
-Message.find({})
-.then(messages => {
-  res.status(200).json(messages)
-})
-.catch (error => {
-  res.status(500).json(error)
-})
+  Message.find({})
+  .then(messages => {
+    res.status(200).json(messages)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
 }
 
 function show(req, res) {
-Message.findById(req.params.id)
-.populate('sender')
-.populate('reciver')
-.then(message => {
-  res.status(200).json(message)
-})
-.catch (error => {
-  res.status(500).json(error)
-})
+  Message.findById(req.params.id)
+  .populate('sender')
+  .populate('reciver')
+  .then(message => {
+    res.status(200).json(message)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
 }
 
 function update(req, res) {
-Message.findByIdAndUpdate(req.params.id, req.body, {new: true})
-.then(message => {
-  res.status(200).json(message)
-})
-.catch (error => {
-  res.status(500).json(error)
-})
+  Message.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(message => {
+    res.status(200).json(message)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
 }
 
 function deleteMessage(req, res) {
-Message.findByIdAndDelete(req.params.id)
-.then(message => {
-  res.status(200).json(message)
-})
-.catch (error => {
-  res.status(500).json(error)
-})
+  Message.findByIdAndDelete(req.params.id)
+  .then(message => {
+    res.status(200).json(message)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
 }
 
 export {
-create,
-index,
-show,
-update,
-deleteMessage as delete,
+  show,
+  index,
+  update,
+  create,
+  deleteMessage as delete,
 }

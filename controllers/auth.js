@@ -74,7 +74,7 @@ function createJWT(user) {
 }
 
 export { 
-  signup, 
   login, 
+  signup, 
   changePassword, 
 }

@@ -1,13 +1,13 @@
 import { Record } from "../models/record.js"
 
 function create(req, res) {
-    Record.create(req.body)
-    .then(record => {
-      res.status(201).json(record)
-    })
-    .catch (error => {
-      res.status(500).json(error)
-    })
+  Record.create(req.body)
+  .then(record => {
+    res.status(201).json(record)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
 }
 
 function index(req, res) {

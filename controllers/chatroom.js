@@ -1,16 +1,16 @@
 import { Chatroom } from "../models/chatroom.js"
 
 function create(req, res) {
-    req.body.owner = req.user.profile
-    req.body.members = [req.user.profile]
-    Chatroom.create(req.body)
-    .then(chatroom => {
-      chatroom.populate('members')
-      res.status(201).json(chatroom)
-    })
-    .catch (error => {
-      res.status(500).json(error)
-    })
+  req.body.owner = req.user.profile
+  req.body.members = [req.user.profile]
+  Chatroom.create(req.body)
+  .then(chatroom => {
+    chatroom.populate('members')
+    res.status(201).json(chatroom)
+  })
+  .catch (error => {
+    res.status(500).json(error)
+  })
 }
 
 function index(req, res) {
@@ -99,12 +99,12 @@ function leaveChatroom(req, res) {
 }
 
 export {
-  create,
-  index,
   show,
+  index,
+  create,
   update,
-  deleteChatroom as delete,
   addMessage,
   joinChatroom,
   leaveChatroom,
+  deleteChatroom as delete,
 }

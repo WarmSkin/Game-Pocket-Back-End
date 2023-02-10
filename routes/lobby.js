@@ -8,9 +8,9 @@ const router = Router()
 
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
-router.post('/', checkAuth, lobbyCtrl.create)
 router.get('/', checkAuth, lobbyCtrl.index)
 router.get('/:id', checkAuth, lobbyCtrl.show)
+router.post('/', checkAuth, lobbyCtrl.create)
 router.put('/:id', checkAuth, lobbyCtrl.update)
 router.put('/:id/join-lobby', checkAuth, lobbyCtrl.joinLobby)
 router.put('/:id/leave-lobby', checkAuth, lobbyCtrl.leaveLobby)

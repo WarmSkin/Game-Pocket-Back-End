@@ -153,11 +153,11 @@ function breakupFriendship(req, res) {
 }
 
 export { 
-  index,
-  addPhoto,
-  update,
   show,
+  index,
+  update,
   myPage,
+  addPhoto,
   sendFriendRequest,
   acceptFriendRequest,
   denyFriendRequest,

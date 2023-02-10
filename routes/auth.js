@@ -5,8 +5,8 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 const router = Router()
 
 /*---------- Public Routes ----------*/
-router.post('/signup', authCtrl.signup)
 router.post('/login', authCtrl.login)
+router.post('/signup', authCtrl.signup)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)

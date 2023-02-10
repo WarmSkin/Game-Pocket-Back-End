@@ -24,25 +24,25 @@ io.on('connection', socket => {
     setTimeout(() => {
       const user = socket
       user.emit('changeName')
-    },500)
+    },100)
   })
 
   socket.on('refreshLobby', () => {
     setTimeout(() => {
       socket.broadcast.emit('refreshLobby')
-    },500)
+    },100)
   })
 
   socket.on('friendRequest', () => {
     setTimeout(() => {
     socket.broadcast.emit('friendRequest')
-  },500)
+  },100)
   })
 
   socket.on('refreshMessage', () => {
     setTimeout(() => {
     socket.broadcast.emit('refreshMessage')
-  },500)
+  },100)
   })
 })
 
