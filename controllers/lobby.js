@@ -6,6 +6,7 @@ import { Gameroom } from '../models/gameroom.js'
 import { Message } from '../models/message.js'
 
 function create(req, res) {
+  req.body.owner = req.user.profile
   Lobby.create(req.body)
   .then(lobby => {
     res.status(201).json(lobby)
@@ -32,6 +33,7 @@ Lobby.findById(req.params.id)
 .populate('gamerooms')
 .populate('members')
 .populate('chatrooms')
+.populate('owner')
 .then(lobby => {
   res.status(200).json(lobby)
 })
